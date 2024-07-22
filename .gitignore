@@ -1,1 +1,10 @@
 /node_modules/
+# Arquivos gerados
+/dist/server.js
+/server.js
+
+# Outros arquivos gerados
+/.DS_Store
+/.vscode
+# Outros arquivos
+/package-lock.json

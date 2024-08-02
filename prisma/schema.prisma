@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+// generator client {
+//   provider = "prisma-client-js"
+// }
+// 
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // ou "mysql", "sqlite", etc.
+  url      = env("DATABASE_URL")
+}
+
+model Estacionamento {
+  id          Int      @id @default(autoincrement())
+  nome        String
+  endereco    String
+  capacidade  Int
+  vagas       Vaga[]
+  reservas    Reserva[]
+}
+
+model Vaga {
+  id               Int      @id @default(autoincrement())
+  numero           String
+  tipo             String
+  disponibilidade  Boolean  @default(true)
+  estacionamentoId Int
+  estacionamento   Estacionamento @relation(fields: [estacionamentoId], references: [id])
+  reservas         Reserva[]
+}
+
+model Veiculo {
+  id       Int      @id @default(autoincrement())
+  placa    String   @unique
+  modelo   String
+  cor      String
+  clienteId Int
+  cliente  Cliente  @relation(fields: [clienteId], references: [id])
+}
+
+model Cliente {
+  id       Int      @id @default(autoincrement())
+  nome     String
+  email    String   @unique
+  telefone String
+  veiculos Veiculo[]
+  reservas Reserva[]
+}
+
+model Reserva {
+  id               Int      @id @default(autoincrement())
+  dataHoraEntrada  DateTime
+  dataHoraSaida    DateTime?
+  clienteId        Int
+  cliente          Cliente @relation(fields: [clienteId], references: [id])
+  vagaId           Int
+  vaga             Vaga @relation(fields: [vagaId], references: [id])
+  estacionamentoId Int
+  estacionamento   Estacionamento @relation(fields: [estacionamentoId], references: [id])
+}

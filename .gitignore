@@ -8,3 +8,5 @@
 /.vscode
 # Outros arquivos
 /package-lock.json
+/.env
+/.zshrc

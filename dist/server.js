@@ -37,7 +37,7 @@ app.post('/estacionamentos', (req, res) => {
         capacidade: req.body.capacidade
     };
     estacionamentos.push(novoEstacionamento);
-    res.status(201).json(novoEstacionamento);
+    res.status(201).json(novoEstacionamento); 
 });
 // Rota para atualizar um estacionamento existente por ID
 app.put('/estacionamentos/:id', (req, res) => {

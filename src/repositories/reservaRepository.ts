@@ -9,7 +9,7 @@ export class ReservaRepository {
 
     async findById(id: string): Promise<Reserva | null> {
         return await this.prismaClient.reserva.findUnique({
-            where: { id: parseInt(id) }, 
+            where: { id }, 
         });
     }
 
@@ -21,14 +21,14 @@ export class ReservaRepository {
 
     async updateReserva(id: string, data: Partial<Reserva>): Promise<Reserva> {
         return await this.prismaClient.reserva.update({
-            where: { id: parseInt(id) }, 
+            where: { id }, 
             data,
         });
     }
 
     async deleteReserva(id: string): Promise<Reserva> {
         return await this.prismaClient.reserva.delete({
-            where: { id: parseInt(id) }, 
+            where: { id }, 
         });
     }
 

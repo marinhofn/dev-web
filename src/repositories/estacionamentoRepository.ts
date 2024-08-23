@@ -9,7 +9,7 @@ export class EstacionamentoRepository {
 
     async findById(id: string): Promise<Estacionamento | null> {
         return await this.prismaClient.estacionamento.findUnique({
-            where: { id: parseInt(id) }, 
+            where: { id }, 
         });
     }
 
@@ -21,14 +21,14 @@ export class EstacionamentoRepository {
 
     async updateEstacionamento(id: string, data: Partial<Estacionamento>): Promise<Estacionamento> {
         return await this.prismaClient.estacionamento.update({
-            where: { id: parseInt(id) }, 
+            where: { id }, 
             data,
         });
     }
 
     async deleteEstacionamento(id: string): Promise<Estacionamento> {
         return await this.prismaClient.estacionamento.delete({
-            where: { id: parseInt(id) }, 
+            where: { id }, 
         });
     }
 

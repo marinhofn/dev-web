@@ -7,7 +7,7 @@ export class VagaService {
         this.vagaRepository = new VagaRepository();
     }
 
-    async createVaga(data: { numero: string; tipo: string; estacionamentoId: number }) {
+    async createVaga(data: { numero: string; tipo: string; estacionamentoId: string }) {
         const vaga = await this.vagaRepository.createVaga(data);
         return vaga;
     }

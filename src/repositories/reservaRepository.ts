@@ -13,7 +13,7 @@ export class ReservaRepository {
         });
     }
 
-    async createReserva(data: { dataHoraEntrada: Date; dataHoraSaida?: Date; userId: number; vagaId: number; estacionamentoId: number }): Promise<Reserva> {
+    async createReserva(data: { dataHoraEntrada: Date; dataHoraSaida?: Date; userId: string; vagaId: number; estacionamentoId: number }): Promise<Reserva> {
         return await this.prismaClient.reserva.create({
             data,
         });

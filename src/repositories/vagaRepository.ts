@@ -13,7 +13,7 @@ export class VagaRepository {
         });
     }
 
-    async createVaga(data: { numero: string; tipo: string; estacionamentoId: number }): Promise<Vaga> {
+    async createVaga(data: { numero: string; tipo: string; estacionamentoId: string }): Promise<Vaga> {
         return await this.prismaClient.vaga.create({
             data,
         });

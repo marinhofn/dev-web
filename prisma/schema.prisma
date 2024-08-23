@@ -1,30 +1,14 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
-// generator client {
-//   provider = "prisma-client-js"
-// }
-// 
-// datasource db {
-//   provider = "postgresql"
-//   url      = env("DATABASE_URL")
-// }
-
 generator client {
   provider = "prisma-client-js"
-
 }
 
 datasource db {
-  provider = "postgresql" // ou "mysql", "sqlite", etc.
+  provider = "postgresql" 
   url      = env("DATABASE_URL")
 }
 
 model Estacionamento {
-  id          Int      @id @default(autoincrement())
+  id          String    @id @default(uuid())
   nome        String
   endereco    String
   capacidade  Int
@@ -33,41 +17,56 @@ model Estacionamento {
 }
 
 model Vaga {
-  id               Int      @id @default(autoincrement())
+  id               String   @id @default(uuid())
   numero           String
   tipo             String
   disponibilidade  Boolean  @default(true)
-  estacionamentoId Int
+  estacionamentoId String
   estacionamento   Estacionamento @relation(fields: [estacionamentoId], references: [id])
   reservas         Reserva[]
 }
 
 model Veiculo {
-  id       Int      @id @default(autoincrement())
+  id       String   @id @default(uuid())
   placa    String   @unique
   modelo   String
   cor      String
-  clienteId Int
-  cliente  Cliente  @relation(fields: [clienteId], references: [id])
+  userId   String
+  user     User     @relation(fields: [userId], references: [id])
 }
 
-model Cliente {
-  id       Int      @id @default(autoincrement())
+model User {
+  id       String   @id @default(uuid())
   nome     String
   email    String   @unique
   telefone String
+  password String
+  document String   @unique
   veiculos Veiculo[]
   reservas Reserva[]
+  Session  Session[]
+
+  @@map("users")
 }
 
 model Reserva {
-  id               Int      @id @default(autoincrement())
+  id               String   @id @default(uuid())
   dataHoraEntrada  DateTime
   dataHoraSaida    DateTime?
-  clienteId        Int
-  cliente          Cliente @relation(fields: [clienteId], references: [id])
-  vagaId           Int
-  vaga             Vaga @relation(fields: [vagaId], references: [id])
-  estacionamentoId Int
+  userId           String
+  user             User     @relation(fields: [userId], references: [id])
+  vagaId           String
+  vaga             Vaga     @relation(fields: [vagaId], references: [id])
+  estacionamentoId String
   estacionamento   Estacionamento @relation(fields: [estacionamentoId], references: [id])
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  expiresAt DateTime
+
+  @@index([token], name: "token_idx")
 }

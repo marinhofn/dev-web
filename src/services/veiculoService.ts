@@ -7,7 +7,7 @@ export class VeiculoService {
         this.veiculoRepository = new VeiculoRepository();
     }
 
-    async createVeiculo(data: { placa: string; modelo: string; cor: string; userId: number }) {
+    async createVeiculo(data: { placa: string; modelo: string; cor: string; userId: string }) {
         const veiculo = await this.veiculoRepository.createVeiculo(data);
         return veiculo;
     }

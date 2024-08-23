@@ -13,7 +13,7 @@ export class VeiculoRepository {
         });
     }
 
-    async createVeiculo(data: { placa: string; modelo: string; cor: string; userId: number }): Promise<Veiculo> {
+    async createVeiculo(data: { placa: string; modelo: string; cor: string; userId: string }): Promise<Veiculo> {
         return await this.prismaClient.veiculo.create({
             data,
         });

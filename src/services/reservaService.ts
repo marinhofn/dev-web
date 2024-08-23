@@ -7,7 +7,7 @@ export class ReservaService {
         this.reservaRepository = new ReservaRepository();
     }
 
-    async createReserva(data: { dataHoraEntrada: Date; dataHoraSaida?: Date; userId: string; vagaId: string; estacionamentoId: number }) {
+    async createReserva(data: { dataHoraEntrada: Date; dataHoraSaida?: Date; userId: string; vagaId: string; estacionamentoId: string }) {
         const reserva = await this.reservaRepository.createReserva(data);
         return reserva;
     }

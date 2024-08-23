@@ -15,5 +15,4 @@ app.use('/api', reservaRoutes);
 app.use('/api', vagaRoutes);
 app.use('/api', veiculoRoutes);
 
-
 export default app;

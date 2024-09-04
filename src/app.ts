@@ -8,11 +8,11 @@ import veiculoRoutes from './routes/veiculoRoutes';
 
 const app = createServer();
 
-app.use('/api/user', userRoutes);
-app.use('/api/auth', authRoutes);
-app.use('/api/estacionamento', estacionamentoRoutes);
-app.use('/api/reserva', reservaRoutes);
-app.use('/api/vaga', vagaRoutes);
-app.use('/api/veiculo', veiculoRoutes);
+app.use('/user', userRoutes);
+app.use('/auth', authRoutes);
+app.use('/estacionamento', estacionamentoRoutes);
+app.use('/reserva', reservaRoutes);
+app.use('/vaga', vagaRoutes);
+app.use('/veiculo', veiculoRoutes);
 
 export default app;

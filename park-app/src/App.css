@@ -1,0 +1,20 @@
+.parking-map {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.vaga {
+  font-size: 16px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.disponivel {
+  background-color: rgb(91, 233, 91);
+}
+
+.ocupada {
+  background-color: rgb(255, 116, 116);
+}

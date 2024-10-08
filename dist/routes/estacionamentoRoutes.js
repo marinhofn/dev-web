@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const estacionamentoController_1 = require("../controllers/estacionamentoController");
+const router = (0, express_1.Router)();
+const estacionamentoController = new estacionamentoController_1.EstacionamentoController();
+router.post('/estacionamentos', (req, res) => estacionamentoController.create(req, res));
+router.get('/estacionamentos', (req, res) => estacionamentoController.listEstacionamentos(req, res));
+router.get('/estacionamentos/:id', (req, res) => estacionamentoController.getEstacionamento(req, res));
+router.put('/estacionamentos/:id', (req, res) => estacionamentoController.updateEstacionamento(req, res));
+router.delete('/estacionamentos/:id', (req, res) => estacionamentoController.deleteEstacionamento(req, res));
+exports.default = router;

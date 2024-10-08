@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { VagaService } from '../services/vagaService';
 
 export class VagaController {
+
     private vagaService: VagaService;
 
     constructor() {
@@ -9,6 +10,7 @@ export class VagaController {
     }
 
     async create(request: Request, response: Response) {
+        console.log('Creating vaga');
         try {
             const vaga = await this.vagaService.createVaga(request.body);
             return response.status(201).json(vaga);
@@ -58,7 +60,7 @@ export class VagaController {
         }
     }
 
-    async listVagas(request: Request, response: Response) {
+    async listVagas(request: Request, response: Response) {        
         try {
             const vagas = await this.vagaService.listVagas();
             return response.status(200).json(vagas);

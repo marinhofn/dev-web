@@ -1,0 +1,21 @@
+.parking-lot {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+  
+  .parking-spot {
+    width: 60px;
+    height: 60px;
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .parking-spot.reserved {
+    background-color: rgb(243, 57, 57);
+    cursor: not-allowed;
+  }
+  

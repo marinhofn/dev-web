@@ -1,20 +1,22 @@
 version: '3'
 
-
 services:
- db:
-   image: postgres
-   container_name: databaseaulaPrisma
-   restart: always
-   volumes:
-    - pgdata:/var/lib/postgresql/data
-   environment:
-     POSTGRES_PASSWORD: postgresqlglauber
-   ports:
-     - 5432:5432
-   logging:
-     driver: json-file
-     options:
-       max-size: 100m
+  db:
+    image: postgres
+    container_name: prog-web-db
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: prog-web      # Nome do banco de dados a ser criado
+      POSTGRES_USER: marinho      # Nome de usuário para acessar o PostgreSQL
+      POSTGRES_PASSWORD: marinho    # Senha para o usuário
+    ports:
+      - 5432:5432
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+
 volumes:
- pgdata:
+  pgdata:

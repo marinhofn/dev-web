@@ -60,23 +60,25 @@ const ParkingMap = () => {
   return (
     <div className="parking-map">
       <h2>Selecione sua Vaga no Estacionamento</h2>
-      {mensagem && <p>{mensagem}</p>}
+      {mensagem && <p className="mensagem">{mensagem}</p>}
 
-      {vagas.length > 0 ? (
-        vagas.map((vaga) => (
-          <div
-            key={vaga.id}
-            className={`vaga ${vaga.disponibilidade ? 'disponivel' : 'ocupada'}`}
-            onClick={() => vaga.disponibilidade && handleVagaClick(vaga.id, vaga.numero)} // Adiciona verificação para que só chame a função se a vaga estiver disponível
-          >
-            {vaga.numero}
-          </div>
-        ))
-      ) : (
-        <p>Carregando vagas...</p>
-      )}
-      
-      {vagaSelecionada && <p>Vaga selecionada: {vagaSelecionada}</p>}
+      <div className="vagas-container">
+        {vagas.length > 0 ? (
+          vagas.map((vaga) => (
+            <div
+              key={vaga.id}
+              className={`vaga ${vaga.disponibilidade ? 'disponivel' : 'ocupada'}`}
+              onClick={() => vaga.disponibilidade && handleVagaClick(vaga.id, vaga.numero)} // Adiciona verificação para que só chame a função se a vaga estiver disponível
+            >
+              {vaga.numero}
+            </div>
+          ))
+        ) : (
+          <p>Carregando vagas...</p>
+        )}
+      </div>
+
+      {vagaSelecionada && <p className="vaga-selecionada">Vaga selecionada: {vagaSelecionada}</p>}
     </div>
   );
 };

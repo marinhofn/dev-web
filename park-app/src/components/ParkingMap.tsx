@@ -57,6 +57,15 @@ const ParkingMap = () => {
     }
   };
 
+  // Dividindo as vagas em grupos de 6 por linha
+  const renderizarVagasEmLinhas = (vagas: Vaga[]) => {
+    const linhas = [];
+    for (let i = 0; i < vagas.length; i += 6) {
+      linhas.push(vagas.slice(i, i + 6));
+    }
+    return linhas;
+  };
+
   return (
     <div className="parking-map">
       <h2>Selecione sua Vaga no Estacionamento</h2>
@@ -64,13 +73,17 @@ const ParkingMap = () => {
 
       <div className="vagas-container">
         {vagas.length > 0 ? (
-          vagas.map((vaga) => (
-            <div
-              key={vaga.id}
-              className={`vaga ${vaga.disponibilidade ? 'disponivel' : 'ocupada'}`}
-              onClick={() => vaga.disponibilidade && handleVagaClick(vaga.id, vaga.numero)} // Adiciona verificação para que só chame a função se a vaga estiver disponível
-            >
-              {vaga.numero}
+          renderizarVagasEmLinhas(vagas).map((linha, index) => (
+            <div key={index} className="linha-vagas">
+              {linha.map((vaga) => (
+                <div
+                  key={vaga.id}
+                  className={`vaga ${vaga.disponibilidade ? 'disponivel' : 'ocupada'}`}
+                  onClick={() => vaga.disponibilidade && handleVagaClick(vaga.id, vaga.numero)}
+                >
+                  {vaga.numero}
+                </div>
+              ))}
             </div>
           ))
         ) : (
